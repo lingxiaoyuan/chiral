@@ -10,8 +10,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics.pairwise import cosine_similarity
 plt.rcParams['font.size'] = 20
 
-sys.path.append('/projectnb/twodtransport/lxyuan/chiralFinal')
-sys.path.append('/projectnb/twodtransport/lxyuan/chiralFinal/chiral_multiObj/tools')
+sys.path.append('../')
+sys.path.append('../tools')
 
 from tools.helpers import *
 from tools.ligament_design import *

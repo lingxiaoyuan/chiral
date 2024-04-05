@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-# Machine Learning-Guided Design of Non-Reciprocal and Asymmetric Elastic Chiral Metamaterials
-
-This repository contains the code for the following paper:
-
-> Lingxiao Yuan, Harold Park\*, Emma Lejeune\*
->
-> [Machine Learning-Guided Design of Non-Reciprocal and Asymmetric Elastic Chiral Metamaterials]
-=======
 # Machine Learning-Guided Design of Non-Reciprocal and Asymmetric Elastic Chiral Metamaterials
 
 This repository contains the code for the following paper:
@@ -48,12 +39,15 @@ This repository contains the code for the following paper:
 To generate example for design space 1 to design space 4 , run the follow command:
 
 ```bash
-python arm0_design.py
-python arm1_design.py
-python arm2_design.py
-python arm3_design.py
+>>python arm0_design.py
+>>python arm1_design.py
+>>python arm2_design.py
+>>python arm3_design.py
 ```
 
+<p>
+<img alt="illustration of examples from four design spaces" src="figs/designSpaces.png" width="50%" />
+</p>
 
 `Abaqus`
 This folder contains scripts for Abaqus simulation
@@ -65,6 +59,20 @@ This folder contains scripts for Abaqus simulation
 * `scripts/main_1step_arm1.py` : The main script to submit FEA simulation job for geometries in design space 2
 * `scripts/main_1step_arm2.py` : The main script to submit FEA simulation job for geometries in design space 3
 * `scripts/main_1step_arm3.py` : The main script to submit FEA simulation job for geometries in design space 4
-* `scripts/sensitivity_analysis.py` : Generate examples for mesh sensitivity analysis 
+* `scripts/sensitivity_analysis.py` : Generate examples for mesh sensitivity analysis
 
->>>>>>> 771b75f40c2159dc2717c121ac62e932dcacfd99
+## Hypermeters 
+Below are the parameters to choose for the main.py in folder `chiral_multiObj` and `chiral_multiObj`. All other hyperparameters are saved in config files. 
+
+* `objective`: objective to optimization
+* `mode`: the whole epochs for training the model
+* `it`: the iteration number, it>=0
+
+
+## Steps to reproduce the results
+
+```bash
+# get the acquisition point of the next iteration(e.g. iteration = 1) for objective kxx-/kxx+
+>>python main.py  --objective=xx0xx1 --mode=next it=1
+```
+

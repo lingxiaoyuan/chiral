@@ -6,12 +6,12 @@ This repository contains the code for the following paper:
 >
 > [Machine Learning-Guided Design of Non-Reciprocal and Asymmetric Elastic Chiral Metamaterials](link)
 >
+> 
+
 
 ## Details 
 
-
 `chiral_singleObj`
-This folder contains the information of reproducing the results from the paper. 
 * `configs/configs_default.py` : The configuration file for single objective optimization
 * `main.py` : The main file that controls work flow of single objective optimization
 
@@ -36,10 +36,18 @@ This folder contains the information of reproducing the results from the paper.
 * `lig_space.py` : The base function for ligament shape design
 * `runlib.py.py` : Functions for model training and predicting 
 
+To generate example for design space 1 to design space 4 , run the follow command:
+
+```bash
+python arm0_design.py
+python arm1_design.py
+python arm2_design.py
+python arm3_design.py
+```
 
 
 `Abaqus`
-This folder contains more details of the process of how we generate and select data for OOD dataset. This information is not needed for reproducing the results from the paper. 
+This folder contains scripts for Abaqus simulation
 
 * `scripts/FEmodel.py` : The script for creating Finite Element Model for geometries in design space 1 and design space 2
 * `scripts/FEmodel_arm1.py` : The script for creating Finite Element Model for geometries in design space 3 

@@ -12,6 +12,7 @@ plt.rcParams['font.size'] = 20
 
 sys.path.append('../')
 sys.path.append('../tools')
+sys.path.append('../chiral_singleObj')
 
 from tools.helpers import *
 from tools.ligament_design import *
@@ -26,10 +27,10 @@ from tools.arm3_design import asym_poly_designs as arm3_asym_poly_designs
 from configs.configs_default import get_default_config
 config = get_default_config()
 
-for arm_name in [config.arm_names[0]]:
+for arm_name in config.arm_names:
     arm_config = config.arm_configs[arm_name]
     simulation_path = os.path.join(arm_name+'_samples')
     if not os.path.exists(simulation_path): os.mkdir(simulation_path)
     asym_poly_designs = globals()[f'{arm_name}_asym_poly_designs']
-    ligs, circles, points = asym_poly_designs(n_designs=10, n = arm_config.lig_degree, ds_name=arm_config.ds)
-    write_data(ligs=ligs, circles=circles, points=points, path=simulation_path, start=446)
+    ligs, circles, points = asym_poly_designs(n_designs=5, n = arm_config.lig_degree, ds_name=arm_config.ds)
+    write_data(ligs=ligs, circles=circles, points=points, path=simulation_path, start=0)

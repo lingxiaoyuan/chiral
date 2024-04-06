@@ -31,8 +31,8 @@ This repository contains the code for the following paper:
 * `arm2_design.py` : Generate geometries for design space 3
 * `arm3_design.py` : Generate geometries for design space 4
 * `arm3_tools_aug.py` : Generate augmented geometries for design space 3
-* `data_processing.py` : All function used to extract and processing data
-* `helpers.py` : Functions used for data transformation and visualization
+* `data_processing.py` : Functions for processing data
+* `helpers.py` : Functions for data visualization
 * `lig_space.py` : The base function for ligament shape design
 * `runlib.py.py` : Functions for model training and predicting 
 
@@ -52,8 +52,8 @@ To generate example for design space 1 to design space 4 , run the follow comman
 `Abaqus`
 This folder contains scripts for Abaqus simulation
 
-* `scripts/FEmodel.py` : The script for creating Finite Element Model for geometries in design space 1 and design space 2
-* `scripts/FEmodel_arm1.py` : The script for creating Finite Element Model for geometries in design space 3 
+* `scripts/FEmodel.py` : The script for creating Finite Element Model for geometries in design space 1 and design space 3
+* `scripts/FEmodel_arm1.py` : The script for creating Finite Element Model for geometries in design space 2
 * `scripts/FEmodel_arm3.py` : The script for creating Finite Element Model for geometries in design space 4
 * `scripts/main_1step.py` : The main script to submit FEA simulation job for geometries in design space 1
 * `scripts/main_1step_arm1.py` : The main script to submit FEA simulation job for geometries in design space 2
@@ -65,14 +65,35 @@ This folder contains scripts for Abaqus simulation
 Below are the parameters to choose for the main.py in folder `chiral_multiObj` and `chiral_multiObj`. All other hyperparameters are saved in config files. 
 
 * `objective`: objective to optimization
-* `mode`: the whole epochs for training the model
+  
+  rule of objective name: 'xy0yx1' denotes kxy-/kyx+, 'xx0xx1xy0yx1' denotes multi objectives kxx-/kxx+ and kxy-/kyx+
+* `mode`: the name for the optimization steps, choices = ["collect_data","sampling","train", "select","next_simulation","next"]
 * `it`: the iteration number, it>=0
 
 
-## Steps to reproduce the results
-
+## Steps to reproduce the results (on BU's SCC)
+* Step1: get initial samples
 ```bash
-# get the acquisition point of the next iteration(e.g. iteration = 1) for objective kxx-/kxx+
->>python main.py  --objective=xx0xx1 --mode=next it=1
+#enter the folder Abaqus
+>>cd Abaqus
+#get the geometry parameters for chiral designs, go to folder Abaqus
+>>python initial_samples.py
+#get input files for Abaqus
+>>sh multiinput.sh   
+#run finite element simulation using Abaqus on BU SCC platform
+>>sh multisubjob.sh   
+#extract data from Abaqus FEM simulation results
+>>sh multioutput.sh   
 ```
+
+* Step2: optimization iterations
+```bash
+#enter the workpath
+>>cd chiral_singleObj    #change this to "cd chiral_multiObj" for multi-objectives optimization
+# generatethe design pools, our design pool contains 100,000 design for each design spaces, this parameter are set in config files
+>>python main.py --mode=sampling
+#conduct optimization on BU SCC platform 
+>>sh jobcontrol.sh
+```
+
 

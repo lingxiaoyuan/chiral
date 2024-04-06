@@ -27,4 +27,4 @@ do
  fi
 done
 abaqus cae noGUI=/projectnb/lejlab2/lxyuan/ABAQUSF/chiral/scripts/getdata_1step.py -- $1 $2
-
+#change the above path to where you save /Abaqus/scripts/getdata_1step.py

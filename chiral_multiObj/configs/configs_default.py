@@ -6,6 +6,7 @@ def get_default_config():
     config = ml_collections.ConfigDict()
     #workpath
     config.workdir = '/projectnb/twodtransport/lxyuan/chiralFinal/chiral_multiObj/multiObjective'
+    #the path where the initial sample are saved
     config.initial_data_path = '/projectnb/lejlab2/lxyuan/ABAQUSF/chiral/'
     config.design_degree = 7
     config.arm_names = ['arm0', 'arm1', 'arm2', 'arm3']
@@ -27,7 +28,6 @@ def get_default_config():
     #arm0 configuration
     config.arm0 = arm0 = ml_collections.ConfigDict()
     arm0.arm_name = 'arm0'
-    arm0.feature_name = ['R','theta0','theta1','theta00','theta11','x1','y1','x2','y2','x3','y3']
     arm0.lig_degree = 7
     arm0.ds = ['poly']*7
     arm0.n_initial = config.n_initial

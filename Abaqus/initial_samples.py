@@ -8,14 +8,13 @@ from numpy.linalg import lstsq,norm
 from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.metrics.pairwise import cosine_similarity
-plt.rcParams['font.size'] = 20
+
 
 sys.path.append('../')
 sys.path.append('../tools')
 sys.path.append('../chiral_singleObj')
 
 from tools.helpers import *
-from tools.ligament_design import *
 from tools.lig_space import *
 from tools.data_processing import write_data
 

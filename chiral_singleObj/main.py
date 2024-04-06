@@ -38,7 +38,6 @@ def main(argv):
     path_log  = os.path.join(config.workdir,objective, "./logs/")
     Path(path_log).mkdir(parents=True, exist_ok=True)
 
-    #logger = get_logger(os.path.join(path_log,'history.log'), display=False, save = True)
 
     if FLAGS.mode == 'sampling':
         sampling(config)

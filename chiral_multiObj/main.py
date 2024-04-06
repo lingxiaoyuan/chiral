@@ -23,7 +23,7 @@ FLAGS = flags.FLAGS
 config_flags.DEFINE_config_file("config", None, "Training configuration.", lock_config=True)
 
 flags.DEFINE_string("objective", 'xy0yx0', "Objective to be maximized")
-flags.DEFINE_enum("mode", None, ["collect_data","sampling","train", "select","next_simulation","results","verify","next"], "Running mode")
+flags.DEFINE_enum("mode", None, ["collect_data","sampling","train", "select","next_simulation","next"], "Running mode")
 flags.DEFINE_string("eval_folder", "eval","The folder name for storing evaluation results")
 flags.DEFINE_integer("it", None, "number of iteration")
 flags.mark_flags_as_required(["mode"])
@@ -38,7 +38,6 @@ def main(argv):
     path_log  = os.path.join(config.workdir,objective, "./logs/")
     Path(path_log).mkdir(parents=True, exist_ok=True)
 
-    #logger = get_logger(os.path.join(path_log,'history.log'), display=False, save = True)
 
     if FLAGS.mode == 'sampling':
         sampling(config)
